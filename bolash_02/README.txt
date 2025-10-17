@@ -14,8 +14,7 @@ Pseudocode:
 -----------
 BEGIN movie night
 
-PRINT introduction to Friend 1's list
-SEARCH list for movies that have two-word titles
+IF movie has two words, add to Friend 1's list
 CREATE an array of the two-word titles
 PRINT two-word titles to console
 

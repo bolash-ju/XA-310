@@ -15,6 +15,15 @@
 <body>
 
 	<h1>XA 310 Assignment 02</h1>
+	<p id="friend1Para"></p></p>
+	<p id="friend2Para"></p></p>
+	<p id="friend3Para"></p></p>
+	<p id="friend4Para"></p></p>
+	<p id="friend5Para"></p></p>
+
+
+
+
 
 </body>
 
@@ -22,26 +31,58 @@
 
 const movies = [ "1992", "The Accidental Getaway Driver", "Altered Reality", "Apple Cider Vinegar", "Are You There?", "Armand", "Becoming Led Zeppelin", "Bridget Jones: Mad About the Boy", "Bring Them Down", "Brothers After War", "Captain America: Brave New World", "Cleaner", "The Crow", "Dark Nuns", "The Dead Thing", "Demon City", "Everyone Is Going To Die", "Ex-Husbands", "Gazer", "The Gorge", "Heart Eyes", "In the Lost Lands", "Invasion", "Jade", "Jazzy", "Kid Snow", "Kinda Pregnant", "A Knight's War", "La Dolce Villa", "Last Breath", "The Legend Of Ochi", "Legends of the Condor Heroes: The Gallants", "Lifeline", "Little Bites", "Love Hurts", "Millers in Marriage", "Mom", "The Monkey", "My Fault London", "No Other Land", "Old Guy", "One Night in Tokyo", "Paddington in Peru", "Parthenope", "The Quiet Ones", "Renner", "Rounding", "The Sloth Lane", "A Sloth Story", "UnBroken", "The Unbreakable Boy", "Universal Language", "Upon Waking", "Waitress: The Musical", "We Live in Time", "When I’m Ready", "Win or Lose ", "The Witcher: Sirens of the Deep", "You, Me & Her", "Zero Day", ]
 
+/* Friend 1 will only watch movies with two-word titles. */
+
+const friend1 = spaced(movies, 2);
+console.log("Friend 1, you can watch " + friend1.join(", "));
 
 
-/*
+function spaced(movies, target) {
+	return movies.filter(movie => {
+		const words = movie.split(" ");
+		return words.length === target
+	})
+}
 
-Friend 1 will only watch movies with one word titles.
+document.getElementById("friend1Para").innerHTML = "Friend 1, you can watch " + friend1.join(", ")
 
-Friend 2 will only watch movies that happen "in" some place or concept
+/* Friend 2 will only watch movies that happen "in" some place or concept. */
+const friend2 = movies.filter(movie => movie.includes(" in " || " In "))
+console.log("Friend 2, you can watch " + friend2.join(", "))
+document.getElementById("friend2Para").innerHTML = "Friend 2, you can watch " + friend2.join(", ")
 
-Friend 3 only will only watch movies that have a colon in the title
+/* Friend 3 only will only watch movies that end with the letter "Y". */
 
-Friend 4 flatly refuses to watch any movie where the title starts with the words "The" or "A".
+const friend3 = endsY(movies, "Y")
 
-Friend 5 only wants a list of two movies, but wants them selected randomly
+function endsY(movies, letter) {
+	return movies.filter(movie => {
+			const words3 = movie.split(" ");
+			return words3.filter(word => word.endsWith(letter));
+		}
+	)
+}
 
-*/
+console.log("Friend 3, you can watch " + friend3.join(", "))
+document.getElementById("friend3Para").innerHTML = "Friend 3, you can watch " + friend3.join(", ")
 
 
+/* Friend 4 flatly refuses to watch any movie where the title starts with the words "The" or "A". */
+const friend4 = movies.filter(movie => !(movie.match(/The /gi)||movie.match(/A /gi)))
+console.log("Friend 4, you can watch " + friend4.join(", "))
 
+document.getElementById("friend4Para").innerHTML = "Friend 4, you can watch " + friend4.join(", ")
 
-
+/* Friend 5 only wants a list of three movies, but wants them selected randomly. */
+let count5 = 1
+let friend5 = []
+while(count5 < 4){
+let randomNumber = Math.floor(Math.random() * movies.length)
+friend5.push(count5 + ") " + movies[randomNumber])
+count5++
+}
+console.log("Friend 5, you can watch " + friend5.join(", "))
+document.getElementById("friend5Para").innerHTML = "Friend 5, you can watch " + friend5.join(", ")
 
 </script>
 

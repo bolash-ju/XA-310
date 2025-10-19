@@ -21,10 +21,6 @@
 	<p id="friend4Para"></p></p>
 	<p id="friend5Para"></p></p>
 
-
-
-
-
 </body>
 
 <script>
@@ -35,7 +31,7 @@ const movies = [ "1992", "The Accidental Getaway Driver", "Altered Reality", "Ap
 
 const friend1 = spaced(movies, 2);
 console.log("Friend 1, you can watch " + friend1.join(", "));
-
+document.getElementById("friend1Para").innerHTML = "Friend 1, you can watch " + friend1.join(", ")
 
 function spaced(movies, target) {
 	return movies.filter(movie => {
@@ -44,31 +40,21 @@ function spaced(movies, target) {
 	})
 }
 
-document.getElementById("friend1Para").innerHTML = "Friend 1, you can watch " + friend1.join(", ")
-
 /* Friend 2 will only watch movies that happen "in" some place or concept. */
-const friend2 = movies.filter(movie => movie.includes(" in " || " In "))
+const friend2 = movies.filter(movie => movie.match(/\bin\b/gi))
 console.log("Friend 2, you can watch " + friend2.join(", "))
 document.getElementById("friend2Para").innerHTML = "Friend 2, you can watch " + friend2.join(", ")
 
 /* Friend 3 only will only watch movies that end with the letter "Y". */
 
-const friend3 = endsY(movies, "Y")
-
-function endsY(movies, letter) {
-	return movies.filter(movie => {
-			const words3 = movie.split(" ");
-			return words3.filter(word => word.endsWith(letter));
-		}
-	)
-}
+const friend3 = movies.filter(movie => movie.endsWith("y"))
 
 console.log("Friend 3, you can watch " + friend3.join(", "))
 document.getElementById("friend3Para").innerHTML = "Friend 3, you can watch " + friend3.join(", ")
 
 
 /* Friend 4 flatly refuses to watch any movie where the title starts with the words "The" or "A". */
-const friend4 = movies.filter(movie => !(movie.match(/The /gi)||movie.match(/A /gi)))
+const friend4 = movies.filter(movie => !(movie.match(/\bThe\b/gi)||movie.match(/\bA\b/gi)))
 console.log("Friend 4, you can watch " + friend4.join(", "))
 
 document.getElementById("friend4Para").innerHTML = "Friend 4, you can watch " + friend4.join(", ")
@@ -77,9 +63,9 @@ document.getElementById("friend4Para").innerHTML = "Friend 4, you can watch " + 
 let count5 = 1
 let friend5 = []
 while(count5 < 4){
-let randomNumber = Math.floor(Math.random() * movies.length)
-friend5.push(count5 + ") " + movies[randomNumber])
-count5++
+	let randomNumber = Math.floor(Math.random() * movies.length)
+	friend5.push(count5 + ") " + movies[randomNumber])
+	count5++
 }
 console.log("Friend 5, you can watch " + friend5.join(", "))
 document.getElementById("friend5Para").innerHTML = "Friend 5, you can watch " + friend5.join(", ")

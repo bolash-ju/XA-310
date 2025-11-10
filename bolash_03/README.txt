@@ -1,11 +1,4 @@
 Pizza Generator
-
-Outline your pseudocode in this document, as well as your explanation of the
-function and a description of how you would update the code for varying prices. 
-
-Also list any issues you experienced, other people you may have worked
-with, or any other information that seems relevant about this assignment.
-
 -------------------------------------------------------------------------------
 
 
@@ -18,7 +11,7 @@ FUNCTIONS:
 ----------
 FUNCTION getRandomItems (Array: STRING, X: NUMBER)
     FOREACH item in the array
-	ASSIGN random number
+	    ASSIGN random number
     ENDFOR
     SORT array items numerically by their random numbers
     MAP the names of the randomly sorted items onto Shuffled Array
@@ -31,31 +24,31 @@ ENDFUNCTION
 
 FUNCTION orderPizza (Crust: NUMBER, Sauce: NUMBER, Cheese: NUMBER, Meats: NUMBER, Vegetables: NUMBER, Size: STRING)
     OBJECT
-	PROPERTY crust: 
-	    INPUT crusts list, Crust number
-	    result = getRandomItems(crusts list, Crust number)
-	    OUTPUT result
-	PROPERTY sauce: 
-	    INPUT sauces list, Sauce number
-	    result = getRandomItems(sauces list, Sauce number)
-	    OUTPUT result
-	PROPERTY cheese: 
-	    INPUT cheeses list, Cheese number
-	    result = getRandomItems(cheeses list, Cheese number)
-	    OUTPUT result
-	PROPERTY meats: 
-	    INPUT meats list, Meats number
-	    result = getRandomItems(meats list, Meats number)
-	    OUTPUT result
-	PROPERTY vegetables: 
-	    INPUT vegetables list, Vegetables number
-	    result = getRandomItems(vegetables list, Vegetables number)
-	    OUTPUT result
-	PROPERTY size: Size
-	PROPERTY price:  
-	    INPUT Size, Meats number, Vegetables number
-	    result = pizzaCost(Size, Meats number, Vegetables number)
-	    OUTPUT result
+	    PROPERTY crust: 
+	        INPUT crusts list, Crust number
+	        result = getRandomItems(crusts list, Crust number)
+	        OUTPUT result
+	    PROPERTY sauce: 
+	        INPUT sauces list, Sauce number
+	        result = getRandomItems(sauces list, Sauce number)
+	        OUTPUT result
+	    PROPERTY cheese: 
+	        INPUT cheeses list, Cheese number
+	        result = getRandomItems(cheeses list, Cheese number)
+	        OUTPUT result
+	    PROPERTY meats: 
+	        INPUT meats list, Meats number
+	        result = getRandomItems(meats list, Meats number)
+	        OUTPUT result
+    	PROPERTY vegetables: 
+	        INPUT vegetables list, Vegetables number
+	        result = getRandomItems(vegetables list, Vegetables number)
+	       OUTPUT result
+    	PROPERTY size: Size
+	    PROPERTY price:  
+	        INPUT Size, Meats number, Vegetables number
+	        result = pizzaCost(Size, Meats number, Vegetables number)
+	        OUTPUT result
     ENDOBJECT
 RETURN OBJECT
 ENDFUNCTION
@@ -74,12 +67,12 @@ OBJECT pizza
     PROPERTY meats: Array
     PROPERTY vegetables: Array
     PROPERTY sizePrice: Array
-	PROPERTY small: 10
-	PROPERTY medium: 15
-	PROPERTY large: 20
+	    PROPERTY small: 10
+	    PROPERTY medium: 15
+	    PROPERTY large: 20
     PROPERTY toppingPrices: Array
-	PROPERTY meats: number
-	PROPERTY vegetables: number
+    	PROPERTY meats: number
+    	PROPERTY vegetables: number
 ENDOBJECT
 
 OBJECT pizzaOne
@@ -96,7 +89,7 @@ OBJECT pizzaTwo
 ENDOBJECT
 PRINT pizzaTwo
 
-BJECT pizzaThree
+OBJECT pizzaThree
     INPUT 1, 1, 1, 4, 2, large
     result = orderPizza(1, 1, 1, 4, 2, "large")
     OUTPUT result
@@ -117,32 +110,32 @@ OBJECT pizza with PREMIUM PRICES
     PROPERTY sauce: Array
     PROPERTY cheese: Array
     PROPERTY meats: Array
-	PROPERTY ham: 2.00
-	PROPERTY sausage: 2.00
-	PROPERTY chicken: 2.50
-	PROPERTY pepperoni: 2.00
-	PROPERTY bacon: 2.50
-	PROPERTY ground beef: 2.50
+	    PROPERTY ham: 2.00
+    	PROPERTY sausage: 2.00
+	    PROPERTY chicken: 2.50
+    	PROPERTY pepperoni: 2.00
+	    PROPERTY bacon: 2.50
+    	PROPERTY ground beef: 2.50
     PROPERTY vegetables: Array
-	PROPERTY basil: 1.50
-	PROPERTY mushrooms: 1.50
-	PROPERTY corn: 2.00
-	PROPERTY pineapple: 2.00
-	PROPERTY black olives: 2.00
-	PROPERTY green peppers: 1.50
-	PROPERTY red peppers: 1.50
-	PROPERTY tomatoes: 1.50
-	PROPERTY onions: 1.50
+	    PROPERTY basil: 1.50
+    	PROPERTY mushrooms: 1.50
+    	PROPERTY corn: 2.00
+	    PROPERTY pineapple: 2.00
+    	PROPERTY black olives: 2.00
+    	PROPERTY green peppers: 1.50
+    	PROPERTY red peppers: 1.50
+    	PROPERTY tomatoes: 1.50
+        PROPERTY onions: 1.50
     PROPERTY sizePrice: Array
-	PROPERTY small: 10
-	PROPERTY medium: 15
-	PROPERTY large: 20
+    	PROPERTY small: 10
+    	PROPERTY medium: 15
+    	PROPERTY large: 20
 ENDOBJECT
 
 FUNCTION premiumPizzaCost (Size: STRING, Meats: STRING/ARRAY, Vegetables: STRING/ARRAY)
     FOREACH meat AND vegetable
-	GET price
-	ADD price to toppings cost
+    	GET price
+    	ADD price to toppings cost
     ENDFOR
     RETURN (price of Size) + (toppings cost)
 ENDFUNCTION

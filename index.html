@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+	<title>Pizza Orderer</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<h1> Pizza Orderer</h1>
+
+<p>Create pizza orders and log them to the console.</p>
+
+<script>
+
+// the pizza information
+const pizza = {
+  "crust" : ["thin","stuffed","deep-dish","detroit style","gluten free"],
+  "sauce" : ["tomato", "garlic", "pesto", "barbeque", "no sauce", "ranch"],
+  "cheese": ["cheddar", "fontina", "gruyere", "jack", "mozzarella"],
+  "meats": ["ham", "sausage", "chicken", "pepperoni", "bacon", "ground beef"],
+  "vegetables":["basil", "mushrooms", "corn", "pineapple", "black olives", "green peppers", "red peppers", "tomatoes", "onions"],
+	"sizePrice" : {
+		"small" : 10,
+		"medium" : 15,
+		"large" : 20
+	},
+	"toppingPrices" : {
+		"meats" : 2.00,
+		"vegetables" : 1.50
+	}
+}
+// note that there is no price difference for multiple sauces or cheeses
+
+
+// this is a helper function - call it by using an array and a number as
+// arguments and it will return that many random elements from the array
+function getRandomItems(array, x) {
+	const shuffled = array
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+	return shuffled.slice(0, x);
+}
+
+/*
+
+you will need to create JavaScript objects with the following
+properties:
+
+----------------------
+Pizza: string
+----------------------
+"crust" : string,
+"sauce" : string,
+"cheese" : string,
+"meats" : array,
+"vegetables" : array,
+"size" : string,
+"price" : number
+----------------------
+
+*/
+function pizzaCost(size, meats, vegetables){
+	return pizza.sizePrice[size] + (meats * pizza.toppingPrices.meats) + (vegetables * pizza.toppingPrices.vegetables)
+}
+
+function orderPizza(crust, sauce, cheese, meats, vegetables, size){
+	return{
+"crust" : getRandomItems(pizza.crust, crust),
+"sauce" : getRandomItems(pizza.sauce, sauce),
+"cheese": getRandomItems(pizza.cheese, cheese),
+"meats": getRandomItems(pizza.meats, meats),
+"vegetables": getRandomItems(pizza.vegetables, vegetables),
+"size": size,
+"price": pizzaCost(size, meats, vegetables)
+}
+}
+
+// pizzaOne needs to be a small pizza with one crust, one cheese, one
+// sauce, two meats, and three vegetables with the price calculated accordingly
+const pizzaOne = orderPizza(1, 1, 1, 2, 3, "small");
+console.log("Pizza One: ")
+console.log(pizzaOne)
+
+// pizzaTwo needs to be a medium pizza with one crust, two cheeses, one
+// sauce, one meat, and four vegetables with the price calculated accordingly
+const pizzaTwo = orderPizza(1, 1, 2, 1, 4, "medium");
+console.log("Pizza Two: ")
+console.log(pizzaTwo)
+
+
+// pizzaThree needs to be a large pizza with one crust, one cheese, one
+// sauce, four meats, and two vegetables with the price calculated accordingly
+const pizzaThree = orderPizza(1, 1, 1, 4, 2, "large")
+console.log("Pizza Three: ")
+console.log(pizzaThree)
+
+// calculating total price
+function yourTotalIs(pizzaOne, pizzaTwo, pizzaThree){
+	return pizzaOne.price + pizzaTwo.price + pizzaThree.price
+}
+console.log("Your total is: $" + yourTotalIs(pizzaOne, pizzaTwo, pizzaThree))
+
+</script>
+
+</body>
+</html>
